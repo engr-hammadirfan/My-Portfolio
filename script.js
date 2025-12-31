@@ -1,10 +1,8 @@
-window.addEventListener('beforeunload', () => {
-    window.scrollTo(0, 0);
+document.addEventListener('DOMContentLoaded', () => {
+    if ('scrollRestoration' in history) {
+        history.scrollRestoration = 'auto';
+    }
 });
-// to prevent scroll restoration
-if ('scrollRestoration' in history) {
-    history.scrollRestoration = 'manual';
-}
 
 setTimeout(() => {
      document.getElementById('loading-screen').style.opacity = '0';
@@ -23,12 +21,9 @@ setTimeout(() => {
             updateThemeIcon(false);
         }
     }
-    
-    // Scroll to top after loading
-    window.scrollTo(0, 0);
 }, 1500);
 document.addEventListener('DOMContentLoaded', () => {
-    // === INITIAL LOADING ===
+    // Initial loading 
     setTimeout(() => {
         const loadingScreen = document.getElementById('loading-screen');
         if (loadingScreen) {
@@ -43,7 +38,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }, 1500);
 
-    // === TYPEWRITER EFFECT ===
+    // Typewriter effect
     const typewriterText = document.getElementById('typewriter-text');
     if (typewriterText) {
         const texts = ["Software Engineer", "Web Developer", "UI/UX Designer"];
@@ -75,7 +70,7 @@ document.addEventListener('DOMContentLoaded', () => {
         setTimeout(typeWriter, 1800);
     }
 
-    // === THEME TOGGLE ===
+    //  Theme toggle
     const themeToggle = document.getElementById('theme-toggle');
     if (themeToggle) {
         const themeIcon = themeToggle.querySelector('i');
@@ -90,7 +85,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // === MOBILE MENU ===
+    // Mobile menu
     const mobileMenuBtn = document.getElementById('mobile-menu-btn');
     const navLinks = document.getElementById('nav-links');
     if (mobileMenuBtn && navLinks) {
@@ -107,7 +102,7 @@ document.addEventListener('DOMContentLoaded', () => {
         document.querySelectorAll('.nav-links a').forEach(link => link.addEventListener('click', toggleMenu));
     }
 
-    // === ACADEMIC TABLE ===
+    // Acadamic Table
     const academicData = [
         { year: "2025-Present", institution: "University of Engineering and Technology", degree: "BS Software Engineering", grade: "3.5/4.0" },
         { year: "2023-2025", institution: "Noor School and College Mansehra", degree: "FSc Computer Science", grade: "A+" },
@@ -123,28 +118,6 @@ document.addEventListener('DOMContentLoaded', () => {
             ).join('');
         };
         populateTable(academicData);
-
-        // Table sorting
-        let sortDirections = { year: 'asc', institution: 'asc', degree: 'asc', grade: 'asc' };
-        document.querySelectorAll('#academic-table th[data-sort]').forEach(header => {
-            header.addEventListener('click', () => {
-                const sortBy = header.getAttribute('data-sort');
-                sortDirections[sortBy] = sortDirections[sortBy] === 'asc' ? 'desc' : 'asc';
-                
-                const sortedData = [...academicData].sort((a, b) => {
-                    let aVal = sortBy === 'year' ? parseInt(a.year.split('-')[0]) || 0 : a[sortBy];
-                    let bVal = sortBy === 'year' ? parseInt(b.year.split('-')[0]) || 0 : b[sortBy];
-                    const comp = aVal > bVal ? 1 : aVal < bVal ? -1 : 0;
-                    return sortDirections[sortBy] === 'asc' ? comp : -comp;
-                });
-                
-                populateTable(sortedData);
-                document.querySelectorAll('#academic-table th i').forEach(icon => icon.className = 'fas fa-sort');
-                const currentIcon = header.querySelector('i');
-                if (currentIcon) currentIcon.className = `fas fa-sort-${sortDirections[sortBy] === 'asc' ? 'up' : 'down'}`;
-            });
-        });
-
         // Search functionality
         const searchInput = document.getElementById('search-input');
         if (searchInput) {
@@ -191,7 +164,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
-    // === SKILL BARS ===
+    // Skill portion
     const animateSkillBars = () => {
         document.querySelectorAll('.skill-card').forEach(card => {
             const progressBar = card.querySelector('.skill-progress');
@@ -201,19 +174,35 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     };
 
-    // === PDF VIEWER ===
-    const cvViewer = document.getElementById('cv-viewer');
-    const pdfPlaceholder = document.getElementById('pdf-placeholder');
-    const pdfFrame = document.getElementById('pdf-frame');
-    if (cvViewer && pdfPlaceholder && pdfFrame) {
-        setTimeout(() => {
-            pdfPlaceholder.style.display = 'none';
-            pdfFrame.style.display = 'block';
-            cvViewer.style.transform = 'scale(1.02)';
-            setTimeout(() => cvViewer.style.transform = 'scale(0)', 300);
-        }, 2000);
-    }
+const viewBtn = document.getElementById("view-cv");
+const modal = document.getElementById("cv-modal");
+const closeBtn = document.getElementById("close-cv");
+const navbar = document.getElementById("nav-links");
 
+// Cv portion
+viewBtn.addEventListener("click", () => {
+    const navHeight = navbar.offsetHeight;
+
+    modal.style.display = "flex";
+    modal.style.alignItems = "flex-start";
+    modal.style.paddingTop = navHeight + 40 + "px";
+
+    document.body.style.overflow = "hidden";
+});
+
+// Close with cross
+closeBtn.addEventListener("click", () => {
+    modal.style.display = "none";
+    document.body.style.overflow = "auto";
+});
+
+// Close when clicking outside CV
+modal.addEventListener("click", (e) => {
+    if (e.target === modal) {
+        modal.style.display = "none";
+        document.body.style.overflow = "auto";
+    }
+});
     // Project Data
 const projects = {
   'smart-home': {
@@ -254,76 +243,7 @@ const projects = {
   }
 };
 
-// Initialize Project Modal
-document.addEventListener('DOMContentLoaded', function() {
-  const projectModal = document.getElementById('project-modal');
-  const modalBody = document.getElementById('modal-body');
-  const modalClose = document.getElementById('modal-close');
-  
-  // Add click event to all gallery items
-  document.querySelectorAll('.gallery-item').forEach(item => {
-    item.addEventListener('click', function() {
-      const projectId = this.getAttribute('data-project');
-      const project = projects[projectId];
-      
-      if (project) {
-        // Create project detail HTML
-        const projectHTML = `
-          <div class="project-detail active">
-            <img src="${project.image}" alt="${project.title}">
-            <h2>${project.title}</h2>
-            
-            <div class="tech-stack">
-              ${project.technologies.map(tech => 
-                `<span class="tech-tag">${tech}</span>`
-              ).join('')}
-            </div>
-            
-            <div class="description">
-              <p><strong>Description:</strong> ${project.description}</p>
-              <p><strong>Details:</strong> ${project.details}</p>
-            </div>
-            
-            <div class="project-links">
-              <a href="${project.liveDemo}" class="live-demo" target="_blank">Live Demo</a>
-              <a href="${project.github}" class="github-link" target="_blank">GitHub</a>
-            </div>
-          </div>
-        `;
-        
-        // Insert into modal
-        modalBody.innerHTML = projectHTML;
-        
-        // Show modal
-        projectModal.classList.add('active');
-        document.body.style.overflow = 'hidden';
-      }
-    });
-  });
-  
-  // Close modal function
-  function closeModal() {
-    projectModal.classList.remove('active');
-    document.body.style.overflow = 'auto';
-  }
-  
-  // Close events
-  modalClose.addEventListener('click', closeModal);
-  
-  projectModal.addEventListener('click', function(e) {
-    if (e.target === projectModal) {
-      closeModal();
-    }
-  });
-  
-  // Close with Escape key
-  document.addEventListener('keydown', function(e) {
-    if (e.key === 'Escape' && projectModal.classList.contains('active')) {
-      closeModal();
-    }
-  });
-});
-    // === CONTACT FORM ===
+    // Contact With me
     const contactForm = document.getElementById('contactForm');
     if (contactForm) {
         const nameInput = document.getElementById('name');
@@ -378,7 +298,7 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         });
     }
-    // === SCROLL ANIMATIONS ===
+    // Scroll animations 
     const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
@@ -390,7 +310,7 @@ document.addEventListener('DOMContentLoaded', function() {
     
     document.querySelectorAll('.profile-card, .academic-table, .cv-viewer, .skill-card, .gallery-item, .contact-form').forEach(el => observer.observe(el));
 
-    // === SMOOTH SCROLLING ===
+    // SMOOTH SCROLLING
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function (e) {
             const href = this.getAttribute('href');
@@ -403,7 +323,7 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 
-    // === ACTIVE NAV LINK ===
+    // Active nav bar
     const highlightNavLink = () => {
         const sections = document.querySelectorAll('section');
         const navLinks = document.querySelectorAll('.nav-links a');
