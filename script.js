@@ -173,13 +173,11 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
     };
-
+//cv portion
 const viewBtn = document.getElementById("view-cv");
 const modal = document.getElementById("cv-modal");
 const closeBtn = document.getElementById("close-cv");
 const navbar = document.getElementById("nav-links");
-
-// Cv portion
 viewBtn.addEventListener("click", () => {
     const navHeight = navbar.offsetHeight;
 
@@ -342,4 +340,5 @@ const projects = {
     
     window.addEventListener('scroll', highlightNavLink);
     highlightNavLink();
+
 });
