@@ -5,7 +5,7 @@
   <meta charset="UTF-8">
   <title>Hammad| Portfolio</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@v2.15.1/devicon.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@v2.15.1/devicon.min.css">
   <!-- Google Font -->
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
   <link
@@ -41,12 +41,11 @@
       </ul>
 
       <button class="theme-toggle" id="theme-toggle">
-      <i class="fas fa-moon"></i>
+        <i class="fas fa-moon"></i>
       </button>
     </div>
   </header>
 
-  <!-- ===== MAIN CONTENT ===== -->
   <!-- Hero Section -->
   <section class="hero" id="home">
     <div class="container">
@@ -61,8 +60,6 @@
           </p>
           <div><a href="#contact" class="cta-button">Get In Touch</a></div>
         </div>
-
-
         <div class="hero-image">
           <img src="img.jpeg" alt="Hammad Irfan" class="profile-img">
         </div>
@@ -86,7 +83,8 @@
           </div>
         </div>
         <div class="biodata">
-          <p>I am a passionate Software Engineering student with a strong interest in web development, UI/UX
+          <p>I am a passionate Software Engineering student with
+            a strong interest in web development, UI/UX
             design, and emerging technologies. My journey in tech began in high school, and since then, I've
             been continuously learning and building projects to enhance my skills.</p>
           <p>I believe in creating digital experiences that are not only visually appealing but also
@@ -116,14 +114,14 @@
       <table class="academic-table" id="academic-table">
         <thead>
           <tr>
-            <th data-sort="year">Year <i class="fas fa-sort"></i></th>
-            <th data-sort="institution">Institution <i class="fas fa-sort"></i></th>
-            <th data-sort="degree">Degree/Program <i class="fas fa-sort"></i></th>
-            <th data-sort="grade">Grade/GPA <i class="fas fa-sort"></i></th>
+            <th data-sort="year">Year</th>
+            <th data-sort="institution">Institution</th>
+            <th data-sort="degree">Degree/Program</th>
+            <th data-sort="grade">Grade/GPA</th>
           </tr>
         </thead>
         <tbody id="academic-table-body">
-          <!-- Table rows will be populated by JavaScript -->
+          <!-- Table rows are populated by JavaScript -->
         </tbody>
       </table>
     </div>
@@ -171,127 +169,142 @@
     </div>
   </section>
   <!-- Gallery Section -->
-<section id="gallery">
-  <div class="container">
-    <h2 class="section-title">Project Gallery</h2>
+  <section id="gallery">
+    <div class="container">
+      <h2 class="section-title">Project Gallery</h2>
 
-    <div class="gallery-container">
-      <div class="gallery-item" data-project="smart-home">
-        <img src="images/image.jpg" alt="Smart Home Control System">
-        <div class="gallery-overlay">
-          <h3>Smart Home Control System</h3>
-          <p>Smart home simulation built in C language using functions and control structures to manage home appliances.</p>
+      <div class="gallery-container">
+        <div class="gallery-item" data-project="smart-home">
+          <img src="images/image.jpg" alt="Smart Home Control System">
+          <div class="gallery-overlay">
+            <h3>Smart Home Control System</h3>
+            <p>Smart home simulation built in C language using functions and control structures to manage home
+              appliances.</p>
+          </div>
+        </div>
+
+        <div class="gallery-item" data-project="analytics-dashboard">
+          <img
+            src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&auto=format&fit=crop&w=870&q=80"
+            alt="Data Analytics Dashboard">
+          <div class="gallery-overlay">
+            <h3>Analytics Dashboard</h3>
+            <p>Interactive data visualization with D3.js</p>
+          </div>
+        </div>
+
+        <div class="gallery-item" data-project="fitness-app">
+          <img
+            src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?ixlib=rb-4.0.3&auto=format&fit=crop&w=774&q=80"
+            alt="Mobile App UI">
+          <div class="gallery-overlay">
+            <h3>Fitness App UI</h3>
+            <p>Mobile application design with React Native</p>
+          </div>
         </div>
       </div>
 
-      <div class="gallery-item" data-project="analytics-dashboard">
-        <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&auto=format&fit=crop&w=870&q=80" alt="Data Analytics Dashboard">
-        <div class="gallery-overlay">
-          <h3>Analytics Dashboard</h3>
-          <p>Interactive data visualization with D3.js</p>
+      <!-- Project Details Modal -->
+      <!-- <div class="project-modal" id="project-modal">
+        <div class="modal-content">
+          <button class="modal-close" id="modal-close">×</button>
+          <div class="modal-body" id="modal-body"> -->
+            <!-- Project content will be loaded here -->
+             <!-- i am hammad irfan
+          </div>
         </div>
-      </div>
+      </div> -->
+    </div>
+  </section>
+  <!-- CV Viewer -->
+  <section id="cv">
+    <div class="container">
+      <h2 class="section-title">Curriculum Vitae</h2>
 
-      <div class="gallery-item" data-project="fitness-app">
-        <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?ixlib=rb-4.0.3&auto=format&fit=crop&w=774&q=80" alt="Mobile App UI">
-        <div class="gallery-overlay">
-          <h3>Fitness App UI</h3>
-          <p>Mobile application design with React Native</p>
-        </div>
-      </div>
-
-      <div class="gallery-item" data-project="finance-dashboard">
-        <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?ixlib=rb-4.0.3&auto=format&fit=crop&w=870&q=80" alt="Financial Dashboard">
-        <div class="gallery-overlay">
-          <h3>Finance Dashboard</h3>
-          <p>Real-time financial tracking application</p>
+      <div class="cv-viewer">
+        <div class="cv-header">
+          <h3>Hammad Irfan - Professional CV</h3>
+          <button class="cta-button" id="view-cv">View CV</button>
         </div>
       </div>
     </div>
+  </section>
 
-    <!-- Project Details Modal -->
-    <div class="project-modal" id="project-modal">
-      <div class="modal-content">
-        <button class="modal-close" id="modal-close">×</button>
-        <div class="modal-body" id="modal-body">
-          <!-- Project content will be loaded here -->
-        </div>
+  <!-- MODAL -->
+  <div id="cv-modal"
+    style="display:none; position:fixed; inset:0; background:rgba(0,0,0,0.6); justify-content:center; align-items:center; z-index:999;">
+
+    <div class="cv-viewer" style="width:80%; max-width:900px; position:relative;">
+
+      <span id="close-cv"
+        style="position:absolute; top:15px; right:20px; font-size:28px; cursor:pointer;">&times;</span>
+
+      <div class="pdf-container">
+        <iframe id="pdf-frame" src="Black Modern Professional Resume.pdf">
+        </iframe>
       </div>
+
     </div>
   </div>
-</section>
-      <!-- CV Viewer -->
-      <section id="cv">
-        <div class="container">
-          <h2 class="section-title">Curriculum Vitae</h2>
 
-          <div class="cv-viewer" id="cv-viewer">
-            <div class="cv-header">
-              <h3>Hammad Irfan - Professional CV</h3>
-              <a href="Black Modern Professional Resume.pdf" class="cta-button" target="" id="download-cv">
-                <i class=""></i> View CV
-              </a>
-            </div>
-        </div>
-      </section>
-      <!-- Contact Form -->
-      <section id="contact">
-        <div class="container">
-          <h2 class="section-title">Get In Touch</h2>
+  <!-- Contact Form -->
+  <section id="contact">
+    <div class="container">
+      <h2 class="section-title">Get In Touch</h2>
 
-          <div class="contact-form" id="contact-form">
-            <form id="contactForm">
-              <div class="form-group">
-                <label for="name">Full Name</label>
-                <input type="text" id="name" class="form-control" placeholder="Enter your name">
-                <div class="error-message" id="name-error">Please enter your name</div>
-              </div>
-
-              <div class="form-group">
-                <label for="email">Email Address</label>
-                <input type="email" id="email" class="form-control" placeholder="Enter your email">
-                <div class="error-message" id="email-error">Please enter a valid email address</div>
-              </div>
-
-              <div class="form-group">
-                <label for="message">Your Message</label>
-                <textarea id="message" class="form-control" rows="5" placeholder="Enter your message..."></textarea>
-                <div class="error-message" id="message-error">Please enter your message</div>
-              </div>
-
-              <button type="submit" class="submit-btn">Send Message</button>
-
-              <div class="form-success" id="form-success">
-                <i class="fas fa-check-circle"></i> Thank you! Your message has been sent successfully.
-              </div>
-            </form>
+      <div class="contact-form" id="contact-form">
+        <form id="contactForm">
+          <div class="form-group">
+            <label for="name">Full Name</label>
+            <input type="text" id="name" class="form-control" placeholder="Enter your name">
+            <div class="error-message" id="name-error">Please enter your name</div>
           </div>
-        </div>
-      </section>
-      <!-- Footer -->
-      <footer>
-        <div class="container">
-          <div class="social-links">
-            <a href="https://github.com/engr-hammadirfan" class="social-link" target="_blank">
-              <i class="fab fa-github"></i>
-            </a>
-            <a href="https://linkedin.com/in/engr-hammad-irfan" class="social-link" target="_blank">
-              <i class="fab fa-linkedin-in"></i>
-            </a>
 
-            <a href="https://facebook.com/Engr.HammadIrfan" class="social-link" target="_blank">
-              <i class="fab fa-facebook"></i>
-            </a>
-
-            <a href="https://www.instagram.com/hammadirfan.x10/" class="social-link" target="_blank" rel="noopener">
-              <i class="fab fa-instagram"></i>
-            </a>
-
+          <div class="form-group">
+            <label for="email">Email Address</label>
+            <input type="email" id="email" class="form-control" placeholder="Enter your email">
+            <div class="error-message" id="email-error">Please enter a valid email address</div>
           </div>
-          <p class="copyright">© Hammad Irfan . All Rights Reserved.</p>
-        </div>
-      </footer>
-      <script src="script.js"></script>
+
+          <div class="form-group">
+            <label for="message">Your Message</label>
+            <textarea id="message" class="form-control" rows="5" placeholder="Enter your message..."></textarea>
+            <div class="error-message" id="message-error">Please enter your message</div>
+          </div>
+
+          <button type="submit" class="submit-btn">Send Message</button>
+
+          <div class="form-success" id="form-success">
+            <i class="fas fa-check-circle"></i> Thank you! Your message has been sent successfully.
+          </div>
+        </form>
+      </div>
+    </div>
+  </section>
+  <!-- Footer -->
+  <footer>
+    <div class="container">
+      <div class="social-links">
+        <a href="https://github.com/engr-hammadirfan" class="social-link" target="_blank">
+          <i class="fab fa-github"></i>
+        </a>
+        <a href="https://linkedin.com/in/engr-hammad-irfan" class="social-link" target="_blank">
+          <i class="fab fa-linkedin-in"></i>
+        </a>
+
+        <a href="https://facebook.com/Engr.HammadIrfan" class="social-link" target="_blank">
+          <i class="fab fa-facebook"></i>
+        </a>
+
+        <a href="https://www.instagram.com/hammadirfan.x10/" class="social-link" target="_blank" rel="noopener">
+          <i class="fab fa-instagram"></i>
+        </a>
+
+      </div>
+      <p class="copyright">© Hammad Irfan . All Rights Reserved.</p>
+    </div>
+  </footer>
+  <script src="script.js"></script>
 </body>
 
 </html>
