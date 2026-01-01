@@ -173,18 +173,16 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
     };
-//cv portion
+// Cv portion
 const viewBtn = document.getElementById("view-cv");
 const modal = document.getElementById("cv-modal");
 const closeBtn = document.getElementById("close-cv");
 const navbar = document.getElementById("nav-links");
 viewBtn.addEventListener("click", () => {
     const navHeight = navbar.offsetHeight;
-
     modal.style.display = "flex";
     modal.style.alignItems = "flex-start";
     modal.style.paddingTop = navHeight + 40 + "px";
-
     document.body.style.overflow = "hidden";
 });
 
@@ -204,6 +202,7 @@ modal.addEventListener("click", (e) => {
     // Project Data
 const projects = {
   'smart-home': {
+        github: 'https://github.com/your-username/smart-home-control-system',
     title: 'Smart Home Control System',
     image: 'images/image.jpg',
     description: 'A comprehensive smart home simulation built in C language using functions and control structures to manage various home appliances. This project implements a user-friendly interface for controlling lights, temperature, security systems, and other home devices.',
@@ -240,7 +239,16 @@ const projects = {
     github: '#'
   }
 };
+document.querySelectorAll('.gallery-item').forEach(item => {
+  item.addEventListener('click', () => {
+    const projectKey = item.getAttribute('data-project');
+    const githubLink = projects[projectKey]?.github;
 
+    if (githubLink) {
+      window.open(githubLink, '_blank'); // opens in new tab
+    }
+  });
+});
     // Contact With me
     const contactForm = document.getElementById('contactForm');
     if (contactForm) {
@@ -340,5 +348,4 @@ const projects = {
     
     window.addEventListener('scroll', highlightNavLink);
     highlightNavLink();
-
 });
