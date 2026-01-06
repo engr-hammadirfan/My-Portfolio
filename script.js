@@ -163,16 +163,42 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         }
     }
+// Function to animate skill bars
+const animateSkillBars = () => {
+    document.querySelectorAll('.skill-card').forEach(card => {
+        const progressBar = card.querySelector('.skill-progress');
+        if (progressBar) {
+            setTimeout(() => {
+                progressBar.style.width = progressBar.getAttribute('data-width') + '%';
+            }, 300);
+        }
+    });
+};
 
-    // Skill portion
-    const animateSkillBars = () => {
-        document.querySelectorAll('.skill-card').forEach(card => {
-            const progressBar = card.querySelector('.skill-progress');
-            if (progressBar) {
-                setTimeout(() => progressBar.style.width = progressBar.getAttribute('data-width') + '%', 300);
+// Function to reset skill bars to 0%
+const resetSkillBars = () => {
+    document.querySelectorAll('.skill-progress').forEach(progressBar => {
+        progressBar.style.width = '0%';
+    });
+};
+
+const skillsSection = document.getElementById('skills');
+
+if (skillsSection) {
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                animateSkillBars();
+            } else {
+                resetSkillBars();
             }
         });
-    };
+    }, {
+        threshold: 0.3
+    });
+
+    observer.observe(skillsSection);
+}
 // Cv portion
 const viewBtn = document.getElementById("view-cv");
 const modal = document.getElementById("cv-modal");
@@ -199,56 +225,97 @@ modal.addEventListener("click", (e) => {
         document.body.style.overflow = "auto";
     }
 });
-    // Project Data
+// Project Data
 const projects = {
   'smart-home': {
-        github: 'https://github.com/your-username/smart-home-control-system',
     title: 'Smart Home Control System',
-    image: 'images/image.jpg',
-    description: 'A comprehensive smart home simulation built in C language using functions and control structures to manage various home appliances. This project implements a user-friendly interface for controlling lights, temperature, security systems, and other home devices.',
-    details: 'The system features real-time monitoring, automated scheduling, and energy consumption tracking. Users can control devices remotely and set up automated routines based on time or sensor inputs.',
-    technologies: ['C Programming', 'Data Structures', 'File Handling', 'Control Systems'],
+    image: 'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?ixlib=rb-4.0.3&auto=format&fit=crop&w=774&q=80',
+    description: 'A comprehensive smart home simulation built in C language.',
+    details: 'The system features real-time monitoring, automated scheduling, and energy consumption tracking.',
+    technologies: ['C Programming', 'Data Structures', 'File Handling'],
     liveDemo: '#',
     github: '#'
   },
   'analytics-dashboard': {
     title: 'Analytics Dashboard',
     image: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&auto=format&fit=crop&w=870&q=80',
-    description: 'Interactive data visualization dashboard built with D3.js and React. This dashboard provides real-time analytics and insights for business intelligence.',
-    details: 'Features include dynamic charts, real-time data updates, user authentication, and customizable widgets. The dashboard supports multiple data sources and export functionality.',
-    technologies: ['React', 'D3.js', 'Node.js', 'MongoDB', 'Express'],
+    description: 'Interactive data visualization dashboard.',
+    details: 'Features include dynamic charts and real-time data updates.',
+    technologies: ['React', 'D3.js', 'Node.js'],
     liveDemo: '#',
     github: '#'
   },
   'fitness-app': {
     title: 'Fitness App UI',
     image: 'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?ixlib=rb-4.0.3&auto=format&fit=crop&w=774&q=80',
-    description: 'Mobile fitness application design with React Native for tracking workouts, nutrition, and progress.',
-    details: 'Includes workout plans, exercise library, progress tracking, calorie counter, and social features. The app syncs with wearable devices and provides personalized recommendations.',
-    technologies: ['React Native', 'Redux', 'Firebase', 'REST API'],
-    liveDemo: '#',
-    github: '#'
-  },
-  'finance-dashboard': {
-    title: 'Finance Dashboard',
-    image: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?ixlib=rb-4.0.3&auto=format&fit=crop&w=870&q=80',
-    description: 'Real-time financial tracking and management application with advanced reporting features.',
-    details: 'Track expenses, income, investments, and generate financial reports. Includes budgeting tools, bill reminders, and investment portfolio management.',
-    technologies: ['JavaScript', 'Chart.js', 'Python', 'Django', 'PostgreSQL'],
+    description: 'Mobile fitness application design.',
+    details: 'Includes workout plans and progress tracking.',
+    technologies: ['React Native', 'Firebase'],
     liveDemo: '#',
     github: '#'
   }
 };
-document.querySelectorAll('.gallery-item').forEach(item => {
-  item.addEventListener('click', () => {
-    const projectKey = item.getAttribute('data-project');
-    const githubLink = projects[projectKey]?.github;
-
-    if (githubLink) {
-      window.open(githubLink, '_blank'); // opens in new tab
-    }
+function initProjects() {
+  const modal = document.querySelector('.project-detail-overlay');
+  const closeBtn = document.querySelector('.close-btn');
+  
+  console.log('Modal found:', !!modal);
+  console.log('Close button found:', !!closeBtn);
+  console.log('Gallery items found:', document.querySelectorAll('.gallery-item').length);
+  
+  // Setup close button
+  if (closeBtn) {
+    closeBtn.onclick = () => {
+      modal.style.display = 'none';
+    };
+  }
+  
+  // Setup outside click to close
+  if (modal) {
+    modal.onclick = (e) => {
+      if (e.target === modal) {
+        modal.style.display = 'none';
+      }
+    };
+  }
+  
+  // Setup project clicks
+  document.querySelectorAll('.gallery-item').forEach(item => {
+    item.onclick = () => {
+      console.log('Clicked project:', item.getAttribute('data-project'));
+      const projectKey = item.getAttribute('data-project');
+      const project = projects[projectKey];
+      
+      if (project && modal) {
+        // Update modal content
+        modal.querySelector('.project-detail-image').src = project.image;
+        modal.querySelector('.project-detail-title').textContent = project.title;
+        modal.querySelector('.project-detail-description').textContent = project.description;
+        modal.querySelector('.project-detail-full').textContent = project.details;
+        
+        const techContainer = modal.querySelector('.project-technologies');
+        techContainer.innerHTML = '';
+        project.technologies.forEach(tech => {
+          const span = document.createElement('span');
+          span.className = 'tech-tag';
+          span.textContent = tech;
+          techContainer.appendChild(span);
+        });
+        modal.querySelector('.live-demo-btn').href = project.liveDemo;
+        modal.querySelector('.github-btn').href = project.github;
+        
+        // Show modal
+        modal.style.display = 'flex';
+        console.log('Modal should be visible');
+      }
+    };
   });
-});
+}
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', initProjects);
+} else {
+  initProjects();
+}
     // Contact With me
     const contactForm = document.getElementById('contactForm');
     if (contactForm) {
@@ -304,6 +371,23 @@ document.querySelectorAll('.gallery-item').forEach(item => {
             }
         });
     }
+    const backToTop = document.getElementById('back-to-top');
+
+    window.addEventListener('scroll', () => {
+        if (window.scrollY > 300) {
+            backToTop.classList.add('active');
+        } else {
+            backToTop.classList.remove('active');
+        }
+    });
+
+    backToTop.addEventListener('click', (e) => {
+        e.preventDefault();
+        window.scrollTo({
+            top: 0,
+            behavior: 'smooth'
+        });
+    });
     // Scroll animations 
     const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {

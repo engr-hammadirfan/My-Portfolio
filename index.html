@@ -26,7 +26,6 @@
   <header>
     <div class="container header-container">
       <a href="#" class="logo">Portfolio.</a>
-
       <button class="mobile-menu-btn" id="mobile-menu-btn">
         <i class="fas fa-bars"></i>
       </button>
@@ -62,7 +61,7 @@
           <div><a href="#contact" class="cta-button">Get In Touch</a></div>
         </div>
         <div class="hero-image">
-          <img src="img.jpeg" alt="Hammad Irfan" class="profile-img">
+          <img src="IMG-20251202-WA0019.jpg" alt="Hammad Irfan" class="profile-img">
         </div>
       </div>
     </div>
@@ -75,7 +74,7 @@
       <h2 class="section-title">Personal Profile</h2>
       <div class="profile-card" id="profile-card">
         <div class="profile-header">
-          <img src="img.jpeg" alt="Hammad Irfan" class="profile-pic-small">
+          <img src="IMG-20251202-WA0019.jpg" alt="Hammad Irfan" class="profile-pic-small">
           <div class="profile-info">
             <h3>Hammad Irfan</h3>
             <p>Registration: SE-5124761</p>
@@ -111,7 +110,7 @@
           <option value="degree">Degree (A-Z)</option>
         </select>
       </div>
-
+      <div class="table-scrolling">
       <table class="academic-table" id="academic-table">
         <thead>
           <tr>
@@ -125,6 +124,7 @@
           <!-- Table rows are populated by JavaScript -->
         </tbody>
       </table>
+      </div>
     </div>
   </section>
 
@@ -169,43 +169,71 @@
       </div>
     </div>
   </section>
-  <!-- Gallery Section -->
-  <section id="gallery">
-    <div class="container">
-      <h2 class="section-title">Project Gallery</h2>
-
-      <div class="gallery-container">
-        <div class="gallery-item" data-project="smart-home">
-          <img src="images/image.jpg" alt="Smart Home Control System">
+<!-- Projects Gallery Section -->
+<section id="projects" class="projects-section">
+  <div class="container">
+    <h2 class="section-title">My Projects Gallery</h2>
+    <div class="gallery">
+      <!-- Project 1 -->
+      <div class="gallery-item" data-project="smart-home">
+        <div class="gallery-image-container">
+          <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?ixlib=rb-4.0.3&auto=format&fit=crop&w=774&q=80" 
+               alt="Smart Home Control System" class="gallery-image">
           <div class="gallery-overlay">
             <h3>Smart Home Control System</h3>
-            <p>Smart home simulation built in C language using functions and control structures to manage home
-              appliances.</p>
-          </div>
-        </div>
-
-        <div class="gallery-item" data-project="analytics-dashboard">
-          <img
-            src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&auto=format&fit=crop&w=870&q=80"
-            alt="Data Analytics Dashboard">
-          <div class="gallery-overlay">
-            <h3>Analytics Dashboard</h3>
-            <p>Interactive data visualization with D3.js</p>
-          </div>
-        </div>
-
-        <div class="gallery-item" data-project="fitness-app">
-          <img
-            src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?ixlib=rb-4.0.3&auto=format&fit=crop&w=774&q=80"
-            alt="Mobile App UI">
-          <div class="gallery-overlay">
-            <h3>Fitness App UI</h3>
-            <p>Mobile application design with React Native</p>
+            <p>C Programming • Data Structures</p>
+            <span class="click-hint">Click to view details</span>
           </div>
         </div>
       </div>
+      <!-- Project 2 -->
+      <div class="gallery-item" data-project="analytics-dashboard">
+        <div class="gallery-image-container">
+          <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&auto=format&fit=crop&w=870&q=80" 
+               alt="Analytics Dashboard" class="gallery-image">
+          <div class="gallery-overlay">
+            <h3>Analytics Dashboard</h3>
+            <p>React • D3.js • Node.js</p>
+            <span class="click-hint">Click to view details</span>
+          </div>
+        </div>
+      </div>
+      <!-- Project 3 -->
+      <div class="gallery-item" data-project="fitness-app">
+        <div class="gallery-image-container">
+          <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?ixlib=rb-4.0.3&auto=format&fit=crop&w=774&q=80" 
+               alt="Fitness App UI" class="gallery-image">
+          <div class="gallery-overlay">
+            <h3>Fitness App UI</h3>
+            <p>React Native • Firebase</p>
+            <span class="click-hint">Click to view details</span>
+          </div>
+        </div>
+      </div>
+      </div>
     </div>
-  </section>
+  </div>
+</section>
+
+<!-- Project Detail Overlay -->
+<div class="project-detail-overlay">
+  <div class="project-detail-container">
+    <button class="close-btn">&times;</button>
+    <div class="project-detail-content">
+      <img class="project-detail-image" src="" alt="">
+      <div class="project-detail-info">
+        <h2 class="project-detail-title"></h2>
+        <p class="project-detail-description"></p>
+        <p class="project-detail-full"></p>
+        <div class="project-technologies"></div>
+        <div class="project-links">
+          <a class="live-demo-btn" href="#" target="_blank">Live Demo</a>
+          <a class="github-btn" href="#" target="_blank">GitHub</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
   <!-- CV Viewer -->
   <section id="cv">
     <div class="container">
@@ -291,10 +319,12 @@
         </a>
 
       </div>
-      <p class="copyright">© Hammad Irfan . All Rights Reserved.</p>
+      <p class="copyright">© 2026 Hammad Irfan . All Rights Reserved.</p>
     </div>
   </footer>
- 
+  <a href="#home" class="back-to-top" id="back-to-top">
+        <i class="fas fa-arrow-up"></i>
+    </a>
   <script src="script.js"></script>
    </div>
 </body>
