@@ -3,7 +3,6 @@ document.addEventListener('DOMContentLoaded', () => {
         history.scrollRestoration = 'auto';
     }
 });
-
 setTimeout(() => {
      document.getElementById('loading-screen').style.opacity = '0';
         document.getElementById('loading-screen').style.visibility = 'hidden';
@@ -70,8 +69,8 @@ document.addEventListener('DOMContentLoaded', () => {
         setTimeout(typeWriter, 1800);
     }
 
-    //  Theme toggle
-    const themeToggle = document.getElementById('theme-toggle');
+    //  theme button
+    const themeToggle = document.getElementById('theme-button');
     if (themeToggle) {
         const themeIcon = themeToggle.querySelector('i');
         themeToggle.addEventListener('click', () => {
@@ -225,6 +224,78 @@ modal.addEventListener("click", (e) => {
         document.body.style.overflow = "auto";
     }
 });
+
+// Project Tracker
+const DEFAULT_TASKS = [
+  { id: 1, completed: false },
+  { id: 2, completed: false },
+  { id: 3, completed: false },
+  { id: 4, completed: false },
+  { id: 5, completed: false },
+  { id: 6, completed: false }
+];
+let tasks = [];
+function loadTasks() {
+  const saved = JSON.parse(localStorage.getItem('projectTasks')) || [];
+  tasks = DEFAULT_TASKS.map(defaultTask => {
+    const savedTask = saved.find(t => t.id === defaultTask.id);
+    return savedTask ? savedTask : defaultTask;
+  });
+
+  saveTasks();
+}
+function saveTasks() {
+  localStorage.setItem('projectTasks', JSON.stringify(tasks));
+}
+
+function updateProgress() {
+  const total = tasks.length;
+  const completed = tasks.filter(t => t.completed).length;
+  const percent = Math.round((completed / total) * 100);
+
+  document.getElementById('progressFill').style.width = percent + '%';
+  document.getElementById('progressPercent').textContent = percent + '%';
+  document.getElementById('completedTasks').textContent = completed;
+  document.getElementById('totalTasks').textContent = total;
+
+  updateStatusMessage(completed, total);
+  updateTaskCards();
+}
+
+// STATUS MESSAGE 
+function updateStatusMessage(done, total) {
+  const el = document.getElementById('statusMessage');
+  if (!el) return;
+}
+
+function updateTaskCards() {
+  document.querySelectorAll('.task-card').forEach(card => {
+    const id = Number(card.dataset.task);
+    const task = tasks.find(t => t.id === id);
+    if (!task) return;
+    card.classList.toggle('completed', task.completed);
+  });
+}
+
+function toggleTask(id) {
+  const task = tasks.find(t => t.id === id);
+  if (!task) return;
+
+  task.completed = !task.completed;
+  saveTasks();
+  updateProgress();
+}
+
+document.getElementById('tasksContainer').addEventListener('click', e => {
+  const card = e.target.closest('.task-card');
+  if (!card) return;
+  toggleTask(Number(card.dataset.task));
+});
+
+// ===== 9. INIT =====
+loadTasks();
+updateProgress();
+
 // Project Data
 const projects = {
   'smart-home': {
@@ -263,14 +334,14 @@ function initProjects() {
   console.log('Close button found:', !!closeBtn);
   console.log('Gallery items found:', document.querySelectorAll('.gallery-item').length);
   
-  // Setup close button
+  //  close button
   if (closeBtn) {
     closeBtn.onclick = () => {
       modal.style.display = 'none';
     };
   }
   
-  // Setup outside click to close
+  //  outside click to close
   if (modal) {
     modal.onclick = (e) => {
       if (e.target === modal) {
@@ -279,7 +350,7 @@ function initProjects() {
     };
   }
   
-  // Setup project clicks
+  //  project clicks
   document.querySelectorAll('.gallery-item').forEach(item => {
     item.onclick = () => {
       console.log('Clicked project:', item.getAttribute('data-project'));
@@ -287,7 +358,6 @@ function initProjects() {
       const project = projects[projectKey];
       
       if (project && modal) {
-        // Update modal content
         modal.querySelector('.project-detail-image').src = project.image;
         modal.querySelector('.project-detail-title').textContent = project.title;
         modal.querySelector('.project-detail-description').textContent = project.description;
@@ -332,14 +402,12 @@ if (document.readyState === 'loading') {
         contactForm.addEventListener('submit', (e) => {
             e.preventDefault();
             
-            // Reset errors
             [nameError, emailError, messageError].forEach(el => el && (el.style.display = 'none'));
             [nameInput, emailInput, messageInput].forEach(el => el && el.classList.remove('error'));
             formSuccess && (formSuccess.style.display = 'none');
             
             let isValid = true;
             
-            // Validate inputs
             if (!nameInput?.value.trim()) {
                 nameError && (nameError.style.display = 'block');
                 nameInput?.classList.add('error');

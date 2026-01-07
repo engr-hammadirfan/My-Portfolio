@@ -1,6 +1,6 @@
 :root {
-    --primary-color: #6C63FF;
-    --secondary-color: #4A44C6;
+    --primary-color: rgb(52, 152, 219);
+    --secondary-color: #2ecc71;
     --accent-color: #FF6584;
     --light-bg: #F8F9FA;
     --light-text: #333333;
@@ -123,7 +123,7 @@ body.dark-mode header {
     font-family: 'Montserrat', sans-serif;
     font-weight: 900;
     font-size: 1.8rem;
-    color: var(--primary-color);
+    color: rgb(52, 152, 219);
     text-decoration: none;
     transition: var(--transition);
 }
@@ -154,7 +154,7 @@ body.dark-mode header {
     left: 0;
     width: 0;
     height: 2px;
-    background-color: var(--primary-color);
+    background-color: rgb(52, 152, 219);
     transition: width 0.3s ease;
 }
 
@@ -163,7 +163,7 @@ body.dark-mode header {
     width: 100%;
 }
 
-.theme-toggle {
+.theme-button {
     background: none;
     border: none;
     font-size: 1.5rem;
@@ -179,7 +179,7 @@ body.dark-mode header {
     justify-content: center;
 }
 
-.theme-toggle:hover {
+.theme-button:hover {
     background-color: rgba(108, 99, 255, 0.1);
     transform: rotate(30deg);
 }
@@ -221,7 +221,7 @@ body.dark-mode .hero::before {
 
 .hero-content {
     display: flex;
-    padding-top: 74px;
+    padding-top: 110px;
     align-items: center;
     gap: 50px;
 }
@@ -265,13 +265,13 @@ body.dark-mode .hero::before {
 
 .typewriter {
     font-size: 2rem;
-    color: var(--primary-color);
+    color: rgb(52, 152, 219);
     margin-bottom: 20px;
     min-height: 60px;
 }
 
 .typewriter-text {
-    border-right: 3px solid var(--primary-color);
+    border-right: 3px solid ;  color: rgb(52, 152, 219);
     padding-right: 5px;
     animation: blink 1s infinite;
 }
@@ -284,7 +284,7 @@ body.dark-mode .hero::before {
     }
 
     50% {
-        border-color: var(--primary-color);
+        border-color: rgb(52, 152, 219);
     }
 }
 
@@ -298,7 +298,7 @@ body.dark-mode .hero::before {
 .cta-button {
     display: inline-block;
     padding: 15px 30px;
-    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+    background: linear-gradient(to right, #3498db, #2ecc71);
     color: white;
     text-decoration: none;
     border-radius: 50px;
@@ -372,7 +372,7 @@ section {
     transform: translateX(-50%);
     width: 127px;
     height: 4px;
-    background: var(--primary-color);
+    background: linear-gradient(to right, rgb(52, 152, 219), rgb(46, 204, 113));
     border-radius: 2px;
 }
 
@@ -627,7 +627,7 @@ body.dark-mode .skill-card {
 
 .skill-progress {
     height: 100%;
-      background: linear-gradient(to right, var(--primary-color), #c965ff);
+      background: linear-gradient(to right, var(--primary-color), var(--secondary-color));
     border-radius: 5px;
     width: 0;
     transition: width 1.5s ease-in-out;
@@ -718,7 +718,7 @@ body.dark-mode .skill-card {
 
 .click-hint {
     font-size: 0.8rem;
-    color: #00b4db;
+    color: var(--primary-color);
     font-weight: 600;
     text-transform: uppercase;
     letter-spacing: 1px;
@@ -826,7 +826,7 @@ body.dark-mode .skill-card {
 
 .tech-tag {
     background: rgba(0, 131, 176, 0.2);
-    color: #00b4db;
+    color: var(--primary-color);
     padding: 8px 16px;
     border-radius: 20px;
     font-size: 0.9rem;
@@ -923,13 +923,206 @@ body.dark-mode .skill-card {
 }
 
 .project-detail-container::-webkit-scrollbar-thumb {
-    background: #00b4db;
+    background: var(--primary-color);
     border-radius: 4px;
 }
 
 .project-detail-container::-webkit-scrollbar-thumb:hover {
-    background: #0083b0;
-}
+    background: var(--primary-color);
+}        
+        
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid #eaeaea;
+            position: relative;
+        }
+        
+        .subtitle {
+            color: #7f8c8d;
+            font-size: 1.1rem;
+            margin-top: 15px;
+            line-height: 1.5;
+        }
+        
+        .progress-container {
+            background-color: #f8f9fa;
+            border-radius: 12px;
+            padding: 25px;
+            margin-bottom: 40px;
+            border: 1px solid #eaeaea;
+        }
+        
+        .progress-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+        
+        .progress-title {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: #2c3e50;
+        }
+        
+        .progress-percent {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary-color);
+        }
+        
+        .progress-bar {
+            height: 20px;
+            background-color: #ecf0f1;
+            border-radius: 0px;
+            overflow: hidden;
+            position: relative;
+        }
+        
+        .progress-fill {
+            height: 100%;
+            width: 0%;
+            background: linear-gradient(to right, var(--primary-color), var(--secondary-color));
+            border-radius: 0px;
+            transition: width 0.8s cubic-bezier(0.62, 0.45, 0.59, 0.93);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .tasks-container {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+        
+        .task-card {
+            background-color: white;
+            border-radius: 12px;
+            padding: 22px;
+            border-left: 5px solid #3498db;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            cursor: pointer;
+        }
+        
+        .task-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+        }
+        
+        .task-card.completed {
+            border-left-color: var(--secondary-color);
+            background-color: #f9fdf9;
+        }
+        
+        .task-checkbox {
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            border: 2px solid #bdc3c7;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 20px;
+            flex-shrink: 0;
+            transition: all 0.3s ease;
+        }
+        
+        .task-card.completed .task-checkbox {
+            background-color: var(--secondary-color);
+            border-color: var(--secondary-color);
+        }
+        
+        .task-checkbox i {
+            color: white;
+            font-size: 14px;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        
+        .task-card.completed .task-checkbox i {
+            opacity: 1;
+        }
+        
+        .task-content {
+            flex: 1;
+        }
+        
+        .task-title {
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: #2c3e50;
+            margin-bottom: 8px;
+        } 
+        .task-desc {
+            color: #7f8c8d;
+            line-height: 1.5;
+        }
+        
+        .task-number {
+            background-color: #f1f8ff;
+            color: var(--primary-color);
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            margin-right: 15px;
+            flex-shrink: 0;
+        }
+        
+        .task-card.completed .task-number {
+            background-color: #e8f8ef;
+            color: var(--secondary-color);
+        }
+        
+        .footer {
+            text-align: center;
+            margin-top: 40px;
+            color: #95a5a6;
+            font-size: 0.9rem;
+        }
+        
+        .completed-count {
+            display: inline-block;
+            background: linear-gradient(to right, var(--primary-color),var(--secondary-color));
+            color: white;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-weight: 600;
+            margin-top: 10px;
+        }
+        
+        @media (max-width: 768px) {
+            .container {
+                padding: 20px;
+            }
+            
+            h1 {
+                font-size: 2rem;
+            }
+            
+            .task-card {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            
+            .task-number {
+                margin-bottom: 10px;
+            }
+            
+            .task-checkbox {
+                position: absolute;
+                top: 20px;
+                right: 20px;
+            }
+        }    
 /* Contact Form */
 .contact-form {
     background-color: var(--light-card);
