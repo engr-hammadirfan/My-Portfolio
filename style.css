@@ -20,11 +20,7 @@
     padding: 0;
     box-sizing: border-box;
 }
-section{
-    width: 100%;
-    min-height: 100svh;
-    padding: 60px 20px;
-}
+
 #app{
     min-height: 100svh;
     display: flex;
@@ -641,6 +637,11 @@ body.dark-mode .skill-card {
 }
 
 /* Projects Section */
+section{
+    width: 100%;
+    min-height: 100svh;
+    padding: 60px 20px;
+}
 .projects-section {
     padding: 4rem 2rem;
     max-width: 1200px;

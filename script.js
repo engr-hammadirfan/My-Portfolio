@@ -439,6 +439,74 @@ if (document.readyState === 'loading') {
             }
         });
     }
+
+    
+document.getElementById("contactForm");
+const formSuccess = document.getElementById("form-success");
+
+contactForm.addEventListener("submit", async function(e) {
+  e.preventDefault();
+
+  // Form fields
+  const name = document.getElementById("name").value.trim();
+  const email = document.getElementById("email").value.trim();
+  const message = document.getElementById("message").value.trim();
+
+  // Simple validation
+  if (!name) {
+    document.getElementById("name-error").style.display = "block";
+    return;
+  } else {
+    document.getElementById("name-error").style.display = "none";
+  }
+
+  if (!email || !email.includes("@")) {
+    document.getElementById("email-error").style.display = "block";
+    return;
+  } else {
+    document.getElementById("email-error").style.display = "none";
+  }
+
+  if (!message) {
+    document.getElementById("message-error").style.display = "block";
+    return;
+  } else {
+    document.getElementById("message-error").style.display = "none";
+  }
+
+  // Data object
+  const data = { name, email, message };
+
+   try {
+                const response = await fetch("/api/contact", {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({
+                        name: nameInput.value.trim(),
+                        email: emailInput.value.trim(),
+                        message: messageInput.value.trim()
+                    })
+                });
+
+
+    const data = await response.json();
+
+                if (response.ok && data.success) {
+                    if (formSuccess) formSuccess.style.display = 'block';
+                    contactForm.reset();
+                    formSuccess?.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                    setTimeout(() => { if(formSuccess) formSuccess.style.display = 'none'; }, 5000);
+                } else {
+                    alert("Error: " + (data.message || "Something went wrong"));
+                }
+            } catch (err) {
+                console.error("Fetch error:", err);
+                alert("Server is offline.");
+            }
+});
+
+
+
     const backToTop = document.getElementById('back-to-top');
 
     window.addEventListener('scroll', () => {
