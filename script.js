@@ -1,3 +1,10 @@
+
+  window.onload = function () {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth"
+    });
+  };
 document.addEventListener('DOMContentLoaded', () => {
     if ('scrollRestoration' in history) {
         history.scrollRestoration = 'auto';
